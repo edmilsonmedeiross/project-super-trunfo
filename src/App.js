@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
+import './App.css';
 
 class App extends React.Component {
   state = {
@@ -14,10 +15,45 @@ class App extends React.Component {
     cardTrunfo: false,
     // hasTrunfo: false,
     isSaveButtonDisabled: true,
+    deck: [],
   };
 
   onSaveButtonClick = () => {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+      deck,
+    } = this.state;
 
+    deck.push(
+      {
+        cardName,
+        cardDescription,
+        cardAttr1,
+        cardAttr2,
+        cardAttr3,
+        cardImage,
+        cardRare,
+        cardTrunfo,
+      },
+    );
+    this.setState({
+      deck,
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardImage: '',
+      cardRare: '',
+      cardTrunfo: false,
+    });
   };
 
   handleError = () => {
@@ -32,10 +68,10 @@ class App extends React.Component {
     } = this.state;
 
     const sum = 210;
+    const limitAttr = 90;
     const inputNum1 = Number(cardAttr1);
     const inputNum2 = Number(cardAttr2);
     const inputNum3 = Number(cardAttr3);
-    const limitAttr = 90;
 
     const validate = [
       !cardName.length,
@@ -45,14 +81,14 @@ class App extends React.Component {
     ];
     const formIsValid = validate.every((input) => input !== true); // form todo preenchido true
 
-    const sumOfNumberInputsValidate = (inputNum1 + inputNum2 + inputNum3) > sum; // true > 210
+    const sumOfNumberInputsValidate = inputNum1 + inputNum2 + inputNum3 > sum; // true > 210
 
     const numberInputLonely = cardAttr1 > limitAttr // true > 90
-    || cardAttr2 > limitAttr
-    || cardAttr3 > limitAttr
-    || cardAttr1 < 0
-    || cardAttr2 < 0
-    || cardAttr3 < 0;
+      || cardAttr2 > limitAttr
+      || cardAttr3 > limitAttr
+      || cardAttr1 < 0
+      || cardAttr2 < 0
+      || cardAttr3 < 0;
 
     if (formIsValid && !sumOfNumberInputsValidate && !numberInputLonely) {
       this.setState({
@@ -68,16 +104,26 @@ class App extends React.Component {
   handleChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    this.setState({
-      [name]: value,
-    }, this.handleError);
+    this.setState(
+      {
+        [name]: value,
+      },
+      this.handleError,
+    );
   };
 
   render() {
-    const { cardName, cardDescription, cardAttr1,
-      cardAttr2, cardAttr3, cardImage,
-      cardRare, cardTrunfo, // hasTrunfo,
-      isSaveButtonDisabled } = this.state;
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo, // hasTrunfo,
+      isSaveButtonDisabled,
+    } = this.state;
 
     return (
       <div>

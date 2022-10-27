@@ -8,7 +8,7 @@ class Card extends Component {
       cardRare, cardTrunfo,
     } = this.props;
     return (
-      <div>
+      <div className="card">
         <h1 data-testid="name-card">{ cardName }</h1>
         <img data-testid="image-card" src={ cardImage } alt={ cardName } />
         <span data-testid="description-card">{ cardDescription }</span>

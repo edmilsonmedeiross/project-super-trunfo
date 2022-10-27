@@ -18,8 +18,8 @@ class Form extends Component {
     } = this.props;
 
     return (
-      <form action="">
-        <label htmlFor="name">
+      <form action="" className="form">
+        <label htmlFor="name" className="name">
           <span>Nome da carta</span>
           <input
             data-testid="name-input"
@@ -30,7 +30,7 @@ class Form extends Component {
             id="name"
           />
         </label>
-        <label htmlFor="description">
+        <label htmlFor="description" className="description">
           <span>Descrição da carta</span>
           <textarea
             data-testid="description-input"
@@ -44,7 +44,7 @@ class Form extends Component {
             descreva aqui sua carta
           </textarea>
         </label>
-        <label htmlFor="str">
+        <label htmlFor="str" className="cardAttr1">
           <span>Força</span>
           <input
             data-testid="attr1-input"
@@ -55,7 +55,7 @@ class Form extends Component {
             id="str"
           />
         </label>
-        <label htmlFor="sta">
+        <label htmlFor="sta" className="cardAttr2">
           <span>Stamina</span>
           <input
             data-testid="attr2-input"
@@ -66,7 +66,7 @@ class Form extends Component {
             id="sta"
           />
         </label>
-        <label htmlFor="dex">
+        <label htmlFor="dex" className="cardAttr3">
           <span>Destreza</span>
           <input
             data-testid="attr3-input"
@@ -77,7 +77,7 @@ class Form extends Component {
             id="dex"
           />
         </label>
-        <label htmlFor="img">
+        <label htmlFor="img" className="cardImage">
           <span>Url da imagem</span>
           <input
             data-testid="image-input"
@@ -88,7 +88,7 @@ class Form extends Component {
             id="img"
           />
         </label>
-        <label htmlFor="rarit">
+        <label htmlFor="rarit" className="cardRare">
           <span>Raridade</span>
           <select
             data-testid="rare-input"
@@ -97,12 +97,12 @@ class Form extends Component {
             name="cardRare"
             id="rarit"
           >
-            <option id="rarit"> normal </option>
-            <option id="rarit"> raro </option>
-            <option id="rarit"> muito raro </option>
+            <option value="normal" id="rarit"> normal </option>
+            <option value="raro" id="rarit"> raro </option>
+            <option value="muito raro" id="rarit"> muito raro </option>
           </select>
         </label>
-        <label htmlFor="trunfo">
+        <label htmlFor="trunfo" className="cardTrunfo">
           <span>Super Trunfo</span>
           <input
             data-testid="trunfo-input"
