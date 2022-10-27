@@ -13,10 +13,28 @@ class App extends React.Component {
     cardImage: '',
     cardRare: '',
     cardTrunfo: false,
-    // hasTrunfo: false,
+    hasTrunfo: false,
     isSaveButtonDisabled: true,
     deck: [],
   };
+
+  /* hasTrunfo = () => {
+    const { cardTrunfo } = this.state;
+    const trunfo = <span>Você já tem um Super Trunfo em seu baralho</span>;
+    const naoTrunfo = (
+      <label htmlFor="trunfo" className="cardTrunfo">
+        <span>Super Trunfo</span>
+        <input
+          data-testid="trunfo-input"
+          onChange={ onInputChange }
+          checked={ cardTrunfo }
+          type="checkbox"
+          name="cardTrunfo"
+          id="trunfo"
+        />
+      </label>);
+    return cardTrunfo ? trunfo : naoTrunfo;
+  }; */
 
   onSaveButtonClick = () => {
     const {
@@ -43,6 +61,7 @@ class App extends React.Component {
         cardTrunfo,
       },
     );
+
     this.setState({
       deck,
       cardName: '',
@@ -54,6 +73,14 @@ class App extends React.Component {
       cardRare: '',
       cardTrunfo: false,
     });
+
+    const deckVerifyTrunfo = deck.some((card) => card.cardTrunfo === true);
+
+    if (deckVerifyTrunfo) {
+      this.setState({
+        hasTrunfo: true,
+      });
+    }
   };
 
   handleError = () => {
@@ -121,8 +148,10 @@ class App extends React.Component {
       cardAttr3,
       cardImage,
       cardRare,
-      cardTrunfo, // hasTrunfo,
+      cardTrunfo,
+      hasTrunfo,
       isSaveButtonDisabled,
+      deck,
     } = this.state;
 
     return (
@@ -140,6 +169,8 @@ class App extends React.Component {
           isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.handleChange }
           onSaveButtonClick={ this.onSaveButtonClick }
+          deck={ deck }
+          hasTrunfo={ hasTrunfo }
         />
         <Card
           cardName={ cardName }
