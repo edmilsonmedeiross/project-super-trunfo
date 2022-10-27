@@ -6,14 +6,18 @@ class App extends React.Component {
   state = {
     cardName: '',
     cardDescription: '',
-    cardAttr1: '',
-    cardAttr2: '',
-    cardAttr3: '',
+    cardAttr1: 0,
+    cardAttr2: 0,
+    cardAttr3: 0,
     cardImage: '',
     cardRare: '',
     cardTrunfo: false,
     // hasTrunfo: false,
     isSaveButtonDisabled: true,
+  };
+
+  onSaveButtonClick = () => {
+
   };
 
   handleChange = ({ target }) => {
@@ -34,17 +38,27 @@ class App extends React.Component {
       <div>
         <h1>Tryunfo</h1>
         <Form
-          state={
-            [cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
-              cardRare, cardTrunfo, isSaveButtonDisabled]
-          }
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
+          isSaveButtonDisabled={ isSaveButtonDisabled }
           onInputChange={ this.handleChange }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
-          state={
-            [cardName, cardDescription, cardAttr1, cardAttr2, cardAttr3, cardImage,
-              cardRare, cardTrunfo, isSaveButtonDisabled]
-          }
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
           onInputChange={ this.handleChange }
         />
       </div>

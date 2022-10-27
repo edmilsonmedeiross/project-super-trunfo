@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 
 class Card extends Component {
   render() {
-    const { state: [cardName, cardDescription, cardAttr1,
+    const { cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage,
-      cardRare, cardTrunfo],
+      cardRare, cardTrunfo,
     } = this.props;
     return (
       <div>
@@ -23,7 +23,14 @@ class Card extends Component {
 }
 
 Card.propTypes = {
-  state: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  cardName: PropTypes.string.isRequired,
+  cardDescription: PropTypes.string.isRequired,
+  cardAttr1: PropTypes.number.isRequired,
+  cardAttr2: PropTypes.number.isRequired,
+  cardAttr3: PropTypes.number.isRequired,
+  cardImage: PropTypes.string.isRequired,
+  cardRare: PropTypes.string.isRequired,
+  cardTrunfo: PropTypes.bool.isRequired,
 };
 
 export default Card;

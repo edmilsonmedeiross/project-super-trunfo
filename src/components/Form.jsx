@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 class Form extends Component {
   render() {
-    const { onInputChange, state: [cardName, cardDescription, cardAttr1,
+    const { onInputChange, cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage,
       cardRare, cardTrunfo, // hasTrunfo,
-      isSaveButtonDisabled, onSaveButtonClick],
+      isSaveButtonDisabled, onSaveButtonClick,
     } = this.props;
 
     return (
@@ -120,9 +120,6 @@ class Form extends Component {
 
 Form.propTypes = {
   onInputChange: PropTypes.func.isRequired,
-  state: PropTypes.arrayOf(PropTypes.shape).isRequired,
-};
-/*
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
   cardAttr1: PropTypes.number.isRequired,
@@ -132,9 +129,11 @@ Form.propTypes = {
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
   // hasTrunfo: PropTypes.bool.isRequired,
-  isSaveButtonDisabled: PropTypes.func.isRequired,
-  onInputChange: PropTypes.func.isRequired,
+  isSaveButtonDisabled: PropTypes.bool.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
-}).isRequired, */
+};
 
 export default Form;
+
+/* state: PropTypes.arrayOf(PropTypes.shape).isRequired,
+*/
