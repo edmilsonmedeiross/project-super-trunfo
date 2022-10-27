@@ -18,23 +18,26 @@ class App extends React.Component {
     deck: [],
   };
 
-  /* hasTrunfo = () => {
-    const { cardTrunfo } = this.state;
-    const trunfo = <span>Você já tem um Super Trunfo em seu baralho</span>;
-    const naoTrunfo = (
-      <label htmlFor="trunfo" className="cardTrunfo">
-        <span>Super Trunfo</span>
-        <input
-          data-testid="trunfo-input"
-          onChange={ onInputChange }
-          checked={ cardTrunfo }
-          type="checkbox"
-          name="cardTrunfo"
-          id="trunfo"
+  renderDeckCards = () => {
+    const { deck } = this.state;
+    const lis = deck.map((
+      { cardName, cardDescription, cardAttr1,
+        cardAttr2, cardAttr3, cardImage, cardRare, cardTrunfo },
+    ) => (
+      <li key={ cardName }>
+        <Card
+          cardName={ cardName }
+          cardDescription={ cardDescription }
+          cardAttr1={ cardAttr1 }
+          cardAttr2={ cardAttr2 }
+          cardAttr3={ cardAttr3 }
+          cardImage={ cardImage }
+          cardRare={ cardRare }
+          cardTrunfo={ cardTrunfo }
         />
-      </label>);
-    return cardTrunfo ? trunfo : naoTrunfo;
-  }; */
+      </li>));
+    return lis;
+  };
 
   onSaveButtonClick = () => {
     const {
@@ -183,6 +186,9 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           onInputChange={ this.handleChange }
         />
+        <ul>
+          {this.renderDeckCards()}
+        </ul>
       </div>
     );
   }
