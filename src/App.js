@@ -20,22 +20,42 @@ class App extends React.Component {
 
   renderDeckCards = () => {
     const { deck } = this.state;
-    const lis = deck.map((
-      { cardName, cardDescription, cardAttr1,
-        cardAttr2, cardAttr3, cardImage, cardRare, cardTrunfo },
-    ) => (
-      <li key={ cardName }>
-        <Card
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-        />
-      </li>));
+    const lis = deck.map(
+      (
+        {
+          cardName,
+          cardDescription,
+          cardAttr1,
+          cardAttr2,
+          cardAttr3,
+          cardImage,
+          cardRare,
+          cardTrunfo,
+        },
+        index,
+      ) => (
+        <li key={ cardName }>
+          <Card
+            cardName={ cardName }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+          />
+          <button
+            data-testid="delete-button"
+            id={ index }
+            onClick={ this.removeCard }
+            type="button"
+          >
+            Excluir
+          </button>
+        </li>
+      ),
+    );
     return lis;
   };
 
@@ -52,18 +72,16 @@ class App extends React.Component {
       deck,
     } = this.state;
 
-    deck.push(
-      {
-        cardName,
-        cardDescription,
-        cardAttr1,
-        cardAttr2,
-        cardAttr3,
-        cardImage,
-        cardRare,
-        cardTrunfo,
-      },
-    );
+    deck.push({
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    });
 
     this.setState({
       deck,
@@ -84,6 +102,21 @@ class App extends React.Component {
         hasTrunfo: true,
       });
     }
+  };
+
+  removeCard = ({ target }) => {
+    const { deck } = this.state;
+    // console.log(target.id);
+    // console.log(deck);
+    deck.splice(target.id, 1);
+    this.setState({
+      deck,
+    });
+    this.setState({
+      hasTrunfo: deck.some((card) => card.cardTrunfo),
+    });
+
+    // this.renderDeckCards();
   };
 
   handleError = () => {
@@ -186,9 +219,7 @@ class App extends React.Component {
           cardTrunfo={ cardTrunfo }
           onInputChange={ this.handleChange }
         />
-        <ul>
-          {this.renderDeckCards()}
-        </ul>
+        <ul>{this.renderDeckCards()}</ul>
       </div>
     );
   }
