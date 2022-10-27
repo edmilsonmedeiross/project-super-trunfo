@@ -3,10 +3,9 @@ import React, { Component } from 'react';
 
 class Card extends Component {
   render() {
-    const {
-      cardName, cardDescription, cardAttr1,
+    const { state: [cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage,
-      cardRare, cardTrunfo,
+      cardRare, cardTrunfo],
     } = this.props;
     return (
       <div>
@@ -24,14 +23,20 @@ class Card extends Component {
 }
 
 Card.propTypes = {
-  cardName: PropTypes.string.isRequired,
-  cardDescription: PropTypes.string.isRequired,
-  cardAttr1: PropTypes.number.isRequired,
-  cardAttr2: PropTypes.number.isRequired,
-  cardAttr3: PropTypes.number.isRequired,
-  cardImage: PropTypes.string.isRequired,
-  cardRare: PropTypes.string.isRequired,
-  cardTrunfo: PropTypes.bool.isRequired,
+  state: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
 
 export default Card;
+
+/*  cardName: PropTypes.string.isRequired,
+ cardDescription: PropTypes.string.isRequired,
+ cardAttr1: PropTypes.number.isRequired,
+ cardAttr2: PropTypes.number.isRequired,
+ cardAttr3: PropTypes.number.isRequired,
+ cardImage: PropTypes.string.isRequired,
+ cardRare: PropTypes.string.isRequired,
+ cardTrunfo: PropTypes.bool.isRequired,
+ isSaveButtonDisabled: PropTypes.func.isRequired,
+ onInputChange: PropTypes.func.isRequired,
+ onSaveButtonClick: PropTypes.func.isRequired,
+}).isRequired, */

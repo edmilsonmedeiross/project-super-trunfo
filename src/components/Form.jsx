@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 
 class Form extends Component {
   render() {
-    const {
-      cardName, cardDescription, cardAttr1,
+    const { onInputChange, state: [cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage,
       cardRare, cardTrunfo, // hasTrunfo,
-      isSaveButtonDisabled, onInputChange, onSaveButtonClick,
+      isSaveButtonDisabled, onSaveButtonClick],
     } = this.props;
 
     return (
@@ -19,7 +18,7 @@ class Form extends Component {
             onChange={ onInputChange }
             value={ cardName }
             type="text"
-            name="name"
+            name="cardName"
             id="name"
           />
         </label>
@@ -29,7 +28,7 @@ class Form extends Component {
             data-testid="description-input"
             onChange={ onInputChange }
             value={ cardDescription }
-            name="description"
+            name="cardDescription"
             id="description"
             cols="30"
             rows="10"
@@ -44,7 +43,7 @@ class Form extends Component {
             onChange={ onInputChange }
             value={ cardAttr1 }
             type="number"
-            name="str"
+            name="cardAttr1"
             id="str"
           />
         </label>
@@ -55,7 +54,7 @@ class Form extends Component {
             onChange={ onInputChange }
             value={ cardAttr2 }
             type="number"
-            name="sta"
+            name="cardAttr2"
             id="sta"
           />
         </label>
@@ -66,7 +65,7 @@ class Form extends Component {
             onChange={ onInputChange }
             value={ cardAttr3 }
             type="number"
-            name="dex"
+            name="cardAttr3"
             id="dex"
           />
         </label>
@@ -77,7 +76,7 @@ class Form extends Component {
             onChange={ onInputChange }
             value={ cardImage }
             type="text"
-            name="img"
+            name="cardImage"
             id="img"
           />
         </label>
@@ -87,7 +86,7 @@ class Form extends Component {
             data-testid="rare-input"
             onChange={ onInputChange }
             value={ cardRare }
-            name="rarit"
+            name="cardRare"
             id="rarit"
           >
             <option id="rarit"> normal </option>
@@ -102,7 +101,7 @@ class Form extends Component {
             onChange={ onInputChange }
             checked={ cardTrunfo }
             type="checkbox"
-            name="trunfo"
+            name="cardTrunfo"
             id="trunfo"
           />
         </label>
@@ -120,6 +119,10 @@ class Form extends Component {
 }
 
 Form.propTypes = {
+  onInputChange: PropTypes.func.isRequired,
+  state: PropTypes.arrayOf(PropTypes.shape).isRequired,
+};
+/*
   cardName: PropTypes.string.isRequired,
   cardDescription: PropTypes.string.isRequired,
   cardAttr1: PropTypes.number.isRequired,
@@ -132,6 +135,6 @@ Form.propTypes = {
   isSaveButtonDisabled: PropTypes.func.isRequired,
   onInputChange: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
-};
+}).isRequired, */
 
 export default Form;
