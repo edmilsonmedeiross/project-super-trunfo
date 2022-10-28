@@ -18,12 +18,17 @@ class App extends React.Component {
     isSaveButtonDisabled: true,
     deck: [],
     filter: '',
+    filterRarit: '',
   };
 
   renderDeckCards = () => {
-    const { deck, filter } = this.state;
+    const { deck, filter, filterRarit } = this.state;
     const filtered = deck.filter(({ cardName }) => cardName.includes(filter));
-    const lis = filtered.map(
+    let filtered1 = filtered.filter(({ cardRare }) => cardRare === filterRarit);
+    if (filterRarit === 'todas') {
+      filtered1 = filtered;
+    }
+    const lis = filtered1.map(
       (
         {
           cardName,
@@ -192,6 +197,7 @@ class App extends React.Component {
       isSaveButtonDisabled,
       deck,
       filter,
+      filterRarit,
     } = this.state;
 
     return (
@@ -216,6 +222,7 @@ class App extends React.Component {
           filter={ filter }
           handleChange={ this.handleChange }
           deck={ deck }
+          filterRarit={ filterRarit }
         />
         <Card
           cardName={ cardName }
