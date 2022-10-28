@@ -2,6 +2,7 @@ import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
 import './App.css';
+import Filter from './components/Filter';
 
 class App extends React.Component {
   state = {
@@ -16,11 +17,13 @@ class App extends React.Component {
     hasTrunfo: false,
     isSaveButtonDisabled: true,
     deck: [],
+    filter: '',
   };
 
   renderDeckCards = () => {
-    const { deck } = this.state;
-    const lis = deck.map(
+    const { deck, filter } = this.state;
+    const filtered = deck.filter(({ cardName }) => cardName.includes(filter));
+    const lis = filtered.map(
       (
         {
           cardName,
@@ -188,6 +191,7 @@ class App extends React.Component {
       hasTrunfo,
       isSaveButtonDisabled,
       deck,
+      filter,
     } = this.state;
 
     return (
@@ -207,6 +211,11 @@ class App extends React.Component {
           onSaveButtonClick={ this.onSaveButtonClick }
           deck={ deck }
           hasTrunfo={ hasTrunfo }
+        />
+        <Filter
+          filter={ filter }
+          handleChange={ this.handleChange }
+          deck={ deck }
         />
         <Card
           cardName={ cardName }
