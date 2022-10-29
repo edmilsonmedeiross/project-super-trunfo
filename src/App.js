@@ -18,40 +18,25 @@ class App extends React.Component {
     isSaveButtonDisabled: true,
     deck: [],
     filter: '',
-    filterRarit: '',
+    filterRarit: 'todas',
+    sTrunfo: '',
   };
 
   renderDeckCards = () => {
-    const { deck, filter, filterRarit } = this.state;
-    const filtered = deck.filter(({ cardName }) => cardName.includes(filter));
-    let filtered1 = filtered.filter(({ cardRare }) => cardRare === filterRarit);
-    if (filterRarit === 'todas') {
-      filtered1 = filtered;
-    }
-    const lis = filtered1.map(
+    const { deck, filter, filterRarit, sTrunfo } = this.state;
+    let filtered = deck.filter(({ cardName }) => cardName.includes(filter));
+    filtered = filterRarit === 'todas' ? filtered : filtered
+      .filter(({ cardRare }) => cardRare === filterRarit);
+    filtered = sTrunfo ? filtered.filter(({ cardTrunfo }) => cardTrunfo) : filtered;
+
+    const lis = filtered.map(
       (
-        {
-          cardName,
-          cardDescription,
-          cardAttr1,
-          cardAttr2,
-          cardAttr3,
-          cardImage,
-          cardRare,
-          cardTrunfo,
-        },
+        card1,
         index,
       ) => (
-        <li key={ cardName }>
+        <li key={ card1.cardName }>
           <Card
-            cardName={ cardName }
-            cardDescription={ cardDescription }
-            cardAttr1={ cardAttr1 }
-            cardAttr2={ cardAttr2 }
-            cardAttr3={ cardAttr3 }
-            cardImage={ cardImage }
-            cardRare={ cardRare }
-            cardTrunfo={ cardTrunfo }
+            { ...card1 }
           />
           <button
             data-testid="delete-button"
@@ -198,6 +183,7 @@ class App extends React.Component {
       deck,
       filter,
       filterRarit,
+      sTrunfo,
     } = this.state;
 
     return (
@@ -223,6 +209,7 @@ class App extends React.Component {
           handleChange={ this.handleChange }
           deck={ deck }
           filterRarit={ filterRarit }
+          sTrunfo={ sTrunfo }
         />
         <Card
           cardName={ cardName }
@@ -240,6 +227,4 @@ class App extends React.Component {
     );
   }
 }
-
 export default App;
-// comentario
