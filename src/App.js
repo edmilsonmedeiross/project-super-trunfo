@@ -25,30 +25,26 @@ class App extends React.Component {
   renderDeckCards = () => {
     const { deck, filter, filterRarit, sTrunfo } = this.state;
     let filtered = deck.filter(({ cardName }) => cardName.includes(filter));
-    filtered = filterRarit === 'todas' ? filtered : filtered
-      .filter(({ cardRare }) => cardRare === filterRarit);
-    filtered = sTrunfo ? filtered.filter(({ cardTrunfo }) => cardTrunfo) : filtered;
+    filtered = filterRarit === 'todas'
+      ? filtered
+      : filtered.filter(({ cardRare }) => cardRare === filterRarit);
+    filtered = sTrunfo
+      ? filtered.filter(({ cardTrunfo }) => cardTrunfo)
+      : filtered;
 
-    const lis = filtered.map(
-      (
-        card1,
-        index,
-      ) => (
-        <li key={ card1.cardName }>
-          <Card
-            { ...card1 }
-          />
-          <button
-            data-testid="delete-button"
-            id={ index }
-            onClick={ this.removeCard }
-            type="button"
-          >
-            Excluir
-          </button>
-        </li>
-      ),
-    );
+    const lis = filtered.map((card1, index) => (
+      <div className="cardAdded" key={ card1.cardName }>
+        <Card { ...card1 } />
+        <button
+          data-testid="delete-button"
+          id={ index }
+          onClick={ this.removeCard }
+          type="button"
+        >
+          Excluir
+        </button>
+      </div>
+    ));
     return lis;
   };
 
@@ -187,42 +183,48 @@ class App extends React.Component {
     } = this.state;
 
     return (
-      <div>
+      <div className="appContainer">
         <h1>Tryunfo</h1>
-        <Form
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          isSaveButtonDisabled={ isSaveButtonDisabled }
-          onInputChange={ this.handleChange }
-          onSaveButtonClick={ this.onSaveButtonClick }
-          deck={ deck }
-          hasTrunfo={ hasTrunfo }
-        />
-        <Filter
-          filter={ filter }
-          handleChange={ this.handleChange }
-          deck={ deck }
-          filterRarit={ filterRarit }
-          sTrunfo={ sTrunfo }
-        />
-        <Card
-          cardName={ cardName }
-          cardDescription={ cardDescription }
-          cardAttr1={ cardAttr1 }
-          cardAttr2={ cardAttr2 }
-          cardAttr3={ cardAttr3 }
-          cardImage={ cardImage }
-          cardRare={ cardRare }
-          cardTrunfo={ cardTrunfo }
-          onInputChange={ this.handleChange }
-        />
-        <ul>{this.renderDeckCards()}</ul>
+        <div className="App">
+          <div className="formContainer">
+            <Form
+              cardName={ cardName }
+              cardDescription={ cardDescription }
+              cardAttr1={ cardAttr1 }
+              cardAttr2={ cardAttr2 }
+              cardAttr3={ cardAttr3 }
+              cardImage={ cardImage }
+              cardRare={ cardRare }
+              cardTrunfo={ cardTrunfo }
+              isSaveButtonDisabled={ isSaveButtonDisabled }
+              onInputChange={ this.handleChange }
+              onSaveButtonClick={ this.onSaveButtonClick }
+              deck={ deck }
+              hasTrunfo={ hasTrunfo }
+            />
+            <Filter
+              filter={ filter }
+              handleChange={ this.handleChange }
+              deck={ deck }
+              filterRarit={ filterRarit }
+              sTrunfo={ sTrunfo }
+            />
+            <div className="cardContainer">
+              {this.renderDeckCards()}
+            </div>
+          </div>
+          <Card
+            cardName={ cardName }
+            cardDescription={ cardDescription }
+            cardAttr1={ cardAttr1 }
+            cardAttr2={ cardAttr2 }
+            cardAttr3={ cardAttr3 }
+            cardImage={ cardImage }
+            cardRare={ cardRare }
+            cardTrunfo={ cardTrunfo }
+            onInputChange={ this.handleChange }
+          />
+        </div>
       </div>
     );
   }

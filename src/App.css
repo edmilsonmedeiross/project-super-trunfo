@@ -1,39 +1,82 @@
 body {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
   display: flex;
   justify-content: center;
 }
+.appContainer {
+  flex-direction: column;
+  display: flex;
+  padding: 40px;
+  align-items: center;
+  
+}
+
+.cardAdded {
+  border: 1px solid red;
+  width: 358.17px;
+  height: 534.33px;
+}
+
+.cardContainer {
+  border: 1px solid red;
+  width: 100%;
+}
+
+.App {
+  margin-top: 50px;
+  border-style: groove;
+  border-radius: 20px;
+  /* border: 1px solid red; */
+  display: flex;
+  height: 721px;
+  width: 1124px;
+  justify-content: space-around;
+}
 
 .form {
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
+  width: 50%;
+  height: 1000px;
 }
 
 .name {
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
 }
 
 .description {
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
 }
 
 .cardAttr1 {
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
 }
 
 .cardAttr2 {
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
 }
 
 .cardAttr3 {
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
 }
 
 .cardImage {
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
 }
@@ -41,4 +84,25 @@ body {
 .card {
   display: flex;
   flex-direction: column;
+  width: 338.7px;
+  height: 514.86px;
+}
+
+.filter {
+  display: flex;
+}
+
+.inputFilterLabel {
+  display: flex;
+  width: 100%;
+  height: 20px;
+}
+
+.formContainer{
+
+}
+
+.textStrunfo {
+ font-size: small;
+ width: 80px;
 }

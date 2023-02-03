@@ -6,10 +6,10 @@ class Filter extends Component {
     const { filter, handleChange, filterRarit, sTrunfo } = this.props;
 
     return (
-      <div>
-        <label htmlFor="filter-name">
-          Buscar
+      <div className="filter">
+        <label className="inputFilterLabel" htmlFor="filter-name">
           <input
+            className="inputText"
             data-testid="name-filter"
             disabled={ sTrunfo }
             onChange={ handleChange }
@@ -20,8 +20,7 @@ class Filter extends Component {
             placeholder="Busque uma carta"
           />
         </label>
-        <label htmlFor="rarit-search">
-          <span>Selecione uma raridade</span>
+        <label className="inputFilterLabel" htmlFor="rarit-search">
           <select
             data-testid="rare-filter"
             disabled={ sTrunfo }
@@ -36,8 +35,8 @@ class Filter extends Component {
             <option value="muito raro" id="rarit-search"> muito raro </option>
           </select>
         </label>
-        <label htmlFor="sTrunfo">
-          Super Trunfo
+        <label className="inputFilterLabel" htmlFor="sTrunfo">
+          <span className="textStrunfo">Super Trunfo</span>
           <input
             data-testid="trunfo-filter"
             onChange={ handleChange }
